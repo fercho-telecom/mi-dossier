@@ -3,37 +3,488 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Dossier Profesional</title>
+    <title>Fernando Javier Fernández Aparicio | Network Engineering & Solution Engineering</title>
     <style>
-        body { font-family: system-ui, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; color: #24292e; }
-        h1 { border-bottom: 2px solid #24292e; padding-bottom: 0.5rem; }
-        .btn { display: inline-block; padding: 0.8rem 1.5rem; background: #24292e; color: #fff; text-decoration: none; border-radius: 6px; margin: 0.5rem 0.5rem 0.5rem 0; }
-        .btn:hover { background: #444; }
-        footer { margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; font-size: 0.9rem; color: #666; }
+        :root {
+            --bg-dark: #0f172a;           
+            --bg-card: #1e293b;           
+            --bg-card-hover: #334155;     
+            
+            --text-primary: #f8fafc;     
+            --text-secondary: #94a3b8;   
+            
+            --accent-blue: #38bdf8;      
+            --accent-yellow: #facc15;    
+            --accent-yellow-hover: #eab308;
+            
+            --border-color: #334155;
+            --border-highlight: #475569;
+            
+            --tag-bg: rgba(56, 189, 248, 0.1);
+            --tag-text: #7dd3fc;
+            --tag-border: rgba(56, 189, 248, 0.25);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(250, 204, 21, 0.05) 0%, transparent 40%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        /* Hero / Cabecera Principal */
+        header.hero {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 50px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            margin-bottom: 35px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header.hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-yellow));
+        }
+
+        .hero h2.author-name {
+            font-size: 1.1rem;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 span.highlight {
+            color: var(--accent-yellow);
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 22px;
+            letter-spacing: 0.3px;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 900px;
+        }
+
+        /* Grid de 2 Columnas */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 35px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 14px;
+            padding: 38px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: var(--border-highlight);
+            transform: translateY(-2px);
+        }
+
+        .card h2 {
+            font-size: 1.45rem;
+            color: var(--accent-yellow);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 14px;
+        }
+
+        ul.skills-list {
+            list-style: none;
+        }
+
+        ul.skills-list li {
+            margin-bottom: 18px;
+            position: relative;
+            padding-left: 30px;
+            color: var(--text-secondary);
+            font-size: 1.02rem;
+        }
+
+        ul.skills-list li::before {
+            position: absolute;
+            left: 0;
+            top: 1px;
+            font-size: 1.1rem;
+        }
+
+        /* Iconos personalizados por ítem */
+        ul.skills-list li.icon-net::before { content: "🌐"; }
+        ul.skills-list li.icon-migrate::before { content: "🔄"; }
+        ul.skills-list li.icon-fixed::before { content: "🔌"; }
+        ul.skills-list li.icon-trouble::before { content: "🔍"; }
+        
+        ul.skills-list li.icon-auto::before { content: "🛡️"; }
+        ul.skills-list li.icon-viable::before { content: "📐"; }
+        ul.skills-list li.icon-coord::before { content: "📊"; }
+        ul.skills-list li.icon-learn::before { content: "⚡"; }
+
+        ul.skills-list li strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Tags para Tecnologías y Métodos */
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 22px;
+            padding-top: 18px;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .tag {
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            border: 1px solid var(--tag-border);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* Sección Filtro ¿Encajamos? */
+        .fit-section {
+            background: var(--bg-card);
+            border-radius: 14px;
+            padding: 40px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 35px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .fit-section h2 {
+            font-size: 1.45rem;
+            color: var(--accent-yellow);
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 14px;
+        }
+
+        .fit-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .fit-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .fit-box {
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .fit-box.yes {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+        }
+
+        .fit-box.no {
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+        }
+
+        .fit-box h3 {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .fit-box.yes h3 { color: #34d399; }
+        .fit-box.no h3 { color: #f87171; }
+
+        .fit-box ul {
+            list-style: none;
+        }
+
+        .fit-box ul li {
+            font-size: 0.98rem;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .fit-box.yes ul li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #34d399;
+            font-weight: bold;
+        }
+
+        .fit-box.no ul li::before {
+            content: "✕";
+            position: absolute;
+            left: 0;
+            color: #f87171;
+            font-weight: bold;
+        }
+
+        /* Sección Call to Action / Descarga */
+        .cta-section {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid var(--accent-yellow);
+            border-radius: 16px;
+            padding: 50px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .cta-section h2 {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.08rem;
+        }
+
+        .contact-email {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .contact-email a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-email a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-download {
+            display: inline-block;
+            background-color: var(--accent-yellow);
+            color: #0f172a;
+            text-decoration: none;
+            padding: 16px 36px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 20px rgba(250, 204, 21, 0.25);
+        }
+
+        .btn-download:hover {
+            background-color: var(--accent-yellow-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(250, 204, 21, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Tu Nombre</h1>
-        <p>Sitio en construccion</p>
-    </header>
 
-    <main>
-        <section>
-            <h2>Sobre mí</h2>
-            <p>Proximamente...</p>
+    <div class="container">
+        <!-- Hero / Cabecera -->
+        <header class="hero">
+            <h2 class="author-name">Fernando Javier Fernández Aparicio</h2>
+            <h1>Ingeniería de Redes & <span class="highlight">Soluciones Técnicas</span></h1>
+            <div class="subtitle">Especialista en Migraciones, Integración y Operación en Entornos de Operador</div>
+            <p>
+                Ingeniero de Telecomunicaciones con más de 15 años de trayectoria en redes fijas, transporte móvil/backhaul e integración de sistemas. 
+                Mi valor reside en conectar el diseño con la viabilidad real de la implementación, analizando dependencias y restricciones operativas antes de cualquier actuación, y garantizando la continuidad del servicio en todo momento.
+            </p>
+		</li>
+		<div class="tags-container">
+		
+			<span class="tag">Network Engineer</span>
+			<span class="tag">Telecomunications Transport</span>
+                    	<span class="tag">Mobile Backhaul & RAN Transport</span>
+			<span class="tag">Fixed Networks</span>
+                    	<span class="tag">Network Evolution, Migrations & Troubleshooting</span>
+			<span class="tag">Solution Engineering</span>
+			<span class="tag">Multi-vendor</span>
+			<span class="tag">Non-heterogeneous Networks</span>
+			<span class="tag">Cloud</span>
+			<span class="tag">Security</span>
+			<span class="tag">IA</span>
+		</div>
+        </header>
+
+        <!-- Dos Columnas: Experiencia Técnica & Competencias y Método -->
+        <div class="grid-2">
+            <!-- Bloque Experiencia Técnica -->
+            <div class="card">
+                <h2>Experiencia Técnica</h2>
+                <ul class="skills-list">
+                    <li class="icon-net">
+                        <strong>Redes Móviles y Transporte (RAN / Backhaul):</strong> Integración de radioenlaces, optimización de transmisión, migración de tráfico y gestión de redundancia.
+                    </li>
+                    <li class="icon-migrate">
+                        <strong>Migraciones & Cambios Controlados:</strong> Preparación y ejecución de cambios críticos. Uso operativo de automatización (Python) y validaciones pre/post intervención.
+                    </li>
+                    <li class="icon-fixed">
+                        <strong>Redes Fijas e IP:</strong> Configuración en equipos de agregación, gestión de pools IP y auditoría de direccionamiento.
+                    </li>
+                    <li class="icon-trouble">
+                        <strong>Troubleshooting & Validación:</strong> Diagnóstico de discrepancias y contraste riguroso entre resultados esperados y comportamiento en producción.
+                    </li>
+                </ul>
+                <div class="tags-container">
+                    <span class="tag">Nokia</span>
+                    <span class="tag">Orange</span>
+                    <span class="tag">Telefónica</span>
+                    <span class="tag">Huawei</span>
+                    <span class="tag">Ericsson</span>
+                    <span class="tag">Cisco</span>
+                    <span class="tag">Juniper</span>
+                    <span class="tag">Python (Aplicado)</span>
+                    <span class="tag">AWS SAA</span>
+                </div>
+            </div>
+
+            <!-- Bloque Competencias & Método -->
+            <div class="card">
+                <h2>Competencias & Método</h2>
+                <ul class="skills-list">
+                    <li class="icon-auto">
+                        <strong>Autonomía y Rigor:</strong> Capacidad comprobada para trabajar en remoto, gestionando la resolución de problemas con iniciativa propia y atención al detalle.
+                    </li>
+                    <li class="icon-viable">
+                        <strong>Visión Práctica de Viabilidad:</strong> Evaluación realista de requisitos, dependencias técnicas y riesgos previos a cada despliegue o migración.
+                    </li>
+                    <li class="icon-coord">
+                        <strong>Coordinación & Reporting Técnico:</strong> Seguimiento de hitos, control de KPIs y elaboración de documentación/manuales técnicos para facilitar la colaboración transversal.
+                    </li>
+                    <li class="icon-learn">
+                        <strong>Aprendizaje y Adaptación Ágil:</strong> Rápida asimilación de nuevos entornos, herramientas de gestión y procedimientos operativos.
+                    </li>
+                </ul>
+                <div class="tags-container">
+                    <span class="tag">Gestión de Dependencias</span>
+                    <span class="tag">Reporting Técnico</span>
+                    <span class="tag">Análisis de Viabilidad</span>
+                    <span class="tag">Control de KPIs</span>
+                    <span class="tag">Documentación</span>
+		    <span class="tag">Formación continua</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filtro ¿Encajamos? -->
+        <section class="fit-section">
+            <h2>¿Encajamos?</h2>
+            <div class="fit-grid">
+                <div class="fit-box yes">
+                    <h3>Proyectos y roles de interés</h3>
+                    <ul>
+                        <li>Puestos de Network Engineer, Solution Engineer o Integración de Red.</li>
+                        <li>Roles de Service and Operation Lead o gestión técnica de proyectos.</li>
+                        <li>Puestos de diseño técnico enfocado desde una perspectiva práctica y operativa.</li>
+                        <li>Entornos enfocados en la calidad técnica, evolución de infraestructura y migraciones.</li>
+                        <li>Esquemas de trabajo con flexibilidad y opción de teletrabajo (Ubicación: Comunidad de Madrid).</li>
+                    </ul>
+                </div>
+                <div class="fit-box no">
+                    <h3>Fuera del alcance pretendido</h3>
+                    <ul>
+                        <li>Desarrollo de software puro o programación intensiva.</li>
+                        <li>Puestos puramente comerciales o de preventa sin base técnica.</li>
+                        <li>Entornos con turnos o guardias de alta frecuencia.</li>
+                    </ul>
+                </div>
+            </div>
         </section>
 
-        <section>
-            <h2>Mi CV</h2>
-            <p>Puedes consultar o descargar mi CV en PDF:</p>
-            <!-- Cambia los nombres de los PDFs por los tuyos -->
-            <a href="cv-general.pdf" target="_blank" class="btn">📄 CV General (PDF)</a>
+        <!-- Llamada a la Acción / Botón CV -->
+        <section class="cta-section">
+            <h2>Descarga de Currículum Profesional</h2>
+            <p>
+                Si tu propuesta técnica o posición se alinea con la experiencia y criterios detallados, puedes ponerte en contacto conmigo directamente o descargar mi currículum completo.
+            </p>
+            <div class="contact-email">
+                📧 Email de contacto: <a href="mailto:fernandez.ing@proton.me">fernandez.ing@proton.me</a><br>
+                🔗 LinkedIn: <a href="https://www.linkedin.com/in/fernando-javier-fernández-aparicio-7a298b131" target="_blank">Ver perfil profesional</a>
+            </div>
+            <a href="cv-general.pdf" class="btn-download" target="_blank">Descargar CV</a>
         </section>
-    </main>
 
-    <footer>
-        <p>© 2026 Tu Nombre — <a href="cv-general.pdf" target="_blank">CV en PDF</a></p>
-    </footer>
+        <footer>
+            <p>© 2026 Fernando Javier Fernández Aparicio · Perfil Profesional & Contacto Directo</p>
+        </footer>
+    </div>
+
 </body>
 </html>
