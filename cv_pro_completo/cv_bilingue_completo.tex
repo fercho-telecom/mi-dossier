@@ -1,0 +1,42 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+
+% Selector para documento combinado: imprime Español, salto de página, e Inglés
+\newcommand{\lang}[2]{#2}
+
+\definecolor{primary}{RGB}{0, 51, 102}
+\hypersetup{colorlinks=true, linkcolor=primary, urlcolor=primary}
+
+\pagestyle{empty}
+\setlist[itemize]{leftmargin=1.5em, itemsep=2pt, parsep=0pt, topsep=2pt}
+
+\titleformat{\section}{\large\bfseries\color{primary}}{}{0pt}{}[\titlerule]
+\titlespacing*{\section}{0pt}{8pt}{6pt}
+
+\begin{document}
+
+% --- BLOQUE 1: VERSIÓN EN INGLÉS ---
+\input{secciones/datos}
+\input{secciones/perfil}
+\input{secciones/competencias}
+\input{secciones/experiencia}
+\input{secciones/educacion}
+
+\newpage
+
+% --- BLOQUE 2: VERSIÓN EN ESPAÑOL ---
+% Redefinimos \lang temporalmente para que extraiga el segundo argumento (Español)
+\renewcommand{\lang}[2]{#1}
+
+\input{secciones/datos}
+\input{secciones/perfil}
+\input{secciones/competencias}
+\input{secciones/experiencia}
+\input{secciones/educacion}
+
+\end{document}

@@ -1,0 +1,29 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+
+% Selector estricto para Inglés (#2)
+\newcommand{\lang}[2]{#2}
+
+\definecolor{primary}{RGB}{0, 51, 102}
+\hypersetup{colorlinks=true, linkcolor=primary, urlcolor=primary}
+
+\pagestyle{empty}
+\setlist[itemize]{leftmargin=1.5em, itemsep=2pt, parsep=0pt, topsep=2pt}
+
+\titleformat{\section}{\large\bfseries\color{primary}}{}{0pt}{}[\titlerule]
+\titlespacing*{\section}{0pt}{8pt}{6pt}
+
+\begin{document}
+
+\input{secciones/datos}
+\input{secciones/perfil}
+\input{secciones/competencias}
+\input{secciones/experiencia}
+\input{secciones/educacion}
+
+\end{document}
