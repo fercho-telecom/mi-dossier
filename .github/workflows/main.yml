@@ -16,8 +16,9 @@ jobs:
         uses: xu-cheng/latex-action@v4
         with:
           root_file: cv_bilingue_completo.tex
-      - name: Renombrar el PDF
-        run: mv cv_bilingue_completo.pdf cv_general.pdf
+          working_directory: cv_pro_completo/secciones
+      - name: Mover PDF a la raíz
+        run: mv CV/cv_bilingue_completo.pdf cv_general.pdf
       - name: Guardar el PDF en el repositorio
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
