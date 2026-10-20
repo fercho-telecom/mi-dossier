@@ -1,0 +1,24 @@
+name: Compilar CV en LaTeX
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**.tex'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compilar CV
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: cv_bilingue_completo.tex
+      - name: Renombrar el PDF
+        run: mv cv_bilingue_completo.pdf cv_general.pdf
+      - name: Guardar el PDF en el repositorio
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Actualizar CV compilado"
+          file_pattern: cv_general.pdf
